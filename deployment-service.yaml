@@ -45,6 +45,17 @@ spec:
           volumeMounts:
             - name: app-code
               mountPath: /var/www/html
+          env:
+            - name: DB_HOST
+              value: "mariadb-service"
+            - name: DB_PORT
+              value: "3610"
+            - name: DB_NAME
+              value: "appdb"
+            - name: DB_USER
+              value: "appuser"
+            - name: DB_PASS
+              value: "apppassword"
 
         - name: nginx
           image: nginx:1.27-alpine

@@ -3,6 +3,9 @@ FROM php:8.5-fpm-alpine
 WORKDIR /var/www/html
 COPY ./src /var/www/html
 
+# Install MySQL extensions
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+
 # opcache is already built-in in 8.5, just configure it
 # Move production ini and add opcache config
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
