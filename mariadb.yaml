@@ -7,7 +7,7 @@ metadata:
 spec:
   ports:
     - port: 3610
-      targetPort: 3306
+      targetPort: 3610
       name: mysql
   selector:
     app: mariadb
@@ -31,8 +31,10 @@ spec:
       containers:
         - name: mariadb
           image: mariadb:10.11
+          args:
+            - "--port=3610"
           ports:
-            - containerPort: 3306
+            - containerPort: 3610
               name: mysql
           env:
             - name: MARIADB_ROOT_PASSWORD
