@@ -13,6 +13,7 @@ The application is built using the following components:
     *   **ConfigMap**: Provides the Nginx virtual host configuration (`default.conf`).
     *   **Service**: Exposes the application via a `NodePort`.
     *   **HorizontalPodAutoscaler (HPA)**: Automatically scales the deployment between 3 and 20 replicas based on CPU (70% utilization target) and Memory (80% utilization target).
+    *   **StatefulSet (MariaDB)**: Provides a stateful MariaDB database with a persistent volume claim and headless service on port 3610.
 
 ## Prerequisites
 
@@ -48,6 +49,9 @@ kubectl apply -f deployment-service.yaml
 
 # 3. Apply the Horizontal Pod Autoscaler
 kubectl apply -f hpa.yaml
+
+# 4. Deploy the MariaDB StatefulSet
+kubectl apply -f mariadb.yaml
 ```
 
 ### 3. Verify the Deployment
@@ -82,6 +86,7 @@ When you access the application in your browser, you should see a greeting showi
 To remove all the resources deployed by this application from your cluster, run:
 
 ```bash
+kubectl delete -f mariadb.yaml
 kubectl delete -f hpa.yaml
 kubectl delete -f deployment-service.yaml
 kubectl delete -f configmap.yaml
