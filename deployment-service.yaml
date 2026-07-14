@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
         - name: copy-code
-          image: php-app:8.5
+          image: php-app:8.5.1
           imagePullPolicy: Never
           command:
             - sh
@@ -31,7 +31,7 @@ spec:
 
       containers:
         - name: php-fpm
-          image: php-app:8.5
+          image: php-app:8.5.1
           imagePullPolicy: Never
           ports:
             - containerPort: 9000
